@@ -1,0 +1,48 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100%;
+  width: 100%;
+  padding: 4rem;
+
+  button {
+    cursor: pointer;
+    padding: 0;
+    border: 4px dashed transparent;
+    width: inherit;
+    height: inherit;
+
+    &:hover {
+      border-color: currentColor;
+    }
+  }
+}
+
+section {
+  display: grid;
+  place-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+
+  p {
+    font-size: 1.5rem;
+  }
+}
