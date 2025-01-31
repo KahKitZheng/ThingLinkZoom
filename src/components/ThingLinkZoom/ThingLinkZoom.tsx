@@ -12,12 +12,15 @@ export default function ThingLinkZoom() {
 
   return (
     <div style={{ position: "relative" }} ref={containerRef}>
-      <TransformWrapper maxScale={2} wheel={{ disabled: true }}>
+      <TransformWrapper maxScale={1.5} wheel={{ disabled: true }}>
         {({ zoomToElement, resetTransform }) => (
           <>
             <TransformComponent
               wrapperStyle={{ width: "100%", height: "100%" }}
-              contentStyle={{ width: "100%", height: "100%" }}
+              contentStyle={{
+                width: "100%",
+                height: "100%",
+              }}
             >
               <div className="grid-areas">
                 {Array.from({ length: 7 }, (_, i) => (
@@ -37,6 +40,7 @@ export default function ThingLinkZoom() {
                       backgroundColor: `hsl(calc(${i} * 45), 100%, 90%)`,
                       color: `hsl(calc(${i} * 45), 100%, 30%)`,
                     }}
+                    className="grid-area"
                   >
                     <p id={`element-${i}`}>Tuesday</p>
                   </button>

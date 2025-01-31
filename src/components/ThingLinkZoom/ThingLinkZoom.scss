@@ -4,3 +4,22 @@
   right: 0;
   border: none;
 }
+
+.grid-areas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  width: 100%;
+
+  .grid-area {
+    cursor: pointer;
+    padding: 0;
+    border: 4px dashed transparent;
+    font-size: 1.75rem;
+    font-weight: bold;
+
+    &:hover {
+      border-color: currentColor;
+    }
+  }
+}
