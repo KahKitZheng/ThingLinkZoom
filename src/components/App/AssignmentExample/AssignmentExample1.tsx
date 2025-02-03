@@ -8,8 +8,8 @@ export default function AssignmentExample1() {
     <div className="assignment-1">
       <ThingLinkZoom>
         <div className="grid-areas">
-          {Array.from({ length: 7 }, (_, i) => (
-            <Area index={i} />
+          {Array.from({ length: 7 }, (_, index) => (
+            <Area key={index} index={index} />
           ))}
         </div>
       </ThingLinkZoom>
