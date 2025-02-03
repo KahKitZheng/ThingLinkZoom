@@ -1,0 +1,42 @@
+.assignment-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: white;
+  max-width: 1000px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  .assignment-title {
+    font-size: 2.25rem;
+  }
+
+  .grid-areas {
+    display: grid;
+    height: 100%;
+    width: 100%;
+
+    .grid-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      border: 4px dashed transparent;
+      font-size: 1.75rem;
+      font-weight: bold;
+
+      &:hover {
+        border-color: currentColor;
+      }
+
+      &__text {
+        width: fit-content;
+        padding: 1rem;
+        margin: 0;
+      }
+    }
+  }
+}
