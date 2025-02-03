@@ -1,9 +1,9 @@
-import { Tooltip } from "react-tippy";
+import { useRef } from "react";
+import TooltipButton from "../../Tooltip/Tooltip";
 import ThingLinkZoom from "../../ThingLinkZoom/ThingLinkZoom";
 import FINAL_FANTASY_JOBS from "../../../assets/ffxiv_jobs.png";
 import "../../ThingLinkZoom/ThingLinkZoom.scss";
 import "./AssignmentExample.scss";
-import { useRef } from "react";
 
 type ThingLinkItem = {
   id: string;
@@ -15,40 +15,39 @@ type ThingLinkItem = {
 };
 
 export default function AssignmentExample2() {
-  // todo: add blink animation to let people know where the interactive spots are
-
   const imageRef = useRef<HTMLImageElement>(null);
 
   return (
-    <div>
-      <ThingLinkZoom>
-        <div
-          style={{
-            position: "relative",
-            height: `calc(${imageRef.current?.offsetHeight} + 1px)`,
-            width: `calc(${imageRef.current?.offsetWidth} + 1px)`,
-            margin: "auto",
-          }}
-        >
-          <img
-            src={FINAL_FANTASY_JOBS}
-            alt="Final Fantasy XIV playable classes"
-            ref={imageRef}
-          />
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="thinglink-spot"
-              style={{ top: item.y, left: item.x }}
-            >
-              <Tooltip html={<ThingLinkZoomItemPreview item={item} />}>
-                <button>+</button>
-              </Tooltip>
-            </div>
-          ))}
-        </div>
-      </ThingLinkZoom>
-    </div>
+    <ThingLinkZoom>
+      <div
+        style={{
+          position: "relative",
+          height: `calc(${imageRef.current?.offsetHeight} + 1px)`,
+          width: `calc(${imageRef.current?.offsetWidth} + 1px)`,
+          margin: "auto",
+        }}
+      >
+        <img
+          src={FINAL_FANTASY_JOBS}
+          alt="Final Fantasy XIV playable classes"
+          ref={imageRef}
+        />
+        {items.map((item, index) => (
+          <div
+            id={`thinglink-spot-${item.id}`}
+            key={item.id}
+            className="thinglink-spot"
+            style={{ top: item.y, left: item.x }}
+          >
+            <TooltipButton
+              text={index.toString()}
+              tooltip={<ThingLinkZoomItemPreview item={item} />}
+              containerRef={imageRef}
+            />
+          </div>
+        ))}
+      </div>
+    </ThingLinkZoom>
   );
 }
 
