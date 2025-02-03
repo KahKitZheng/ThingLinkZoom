@@ -8,6 +8,7 @@ import React from "react";
 import useFullScreen from "../../hooks/useFullScreen";
 import { ThingLinkZoomContext } from "./context/ThingLinkZoomContext";
 import "./ThingLinkZoom.scss";
+import ThingLinkZoomPopup from "../ThingLinkZoomPopup/ThingLinkZoomPopup";
 
 type ThingLinkZoomProps = {
   children: React.ReactNode;

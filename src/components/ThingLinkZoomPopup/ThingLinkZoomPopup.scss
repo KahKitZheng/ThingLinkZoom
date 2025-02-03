@@ -1,0 +1,27 @@
+.shade {
+  position: fixed;
+  inset: 0;
+  border: 0; // should not be necessary in final version
+  padding: 0; // should not be necessary in final version
+  background-color: hsla(210, 18%, 10%, 0.8);
+  z-index: 1000;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  overflow: hidden;
+}

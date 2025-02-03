@@ -1,50 +1,66 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import TooltipButton from "../../Tooltip/Tooltip";
 import ThingLinkZoom from "../../ThingLinkZoom/ThingLinkZoom";
 import FINAL_FANTASY_JOBS from "../../../assets/ffxiv_jobs.png";
 import ThingLinkZoomItemPreview from "../../ThingLinkZoomPreview/ThingLinkZoomPreview";
 import "./AssignmentExample.scss";
 import "../../ThingLinkZoom/ThingLinkZoom.scss";
+import ThingLinkZoomPopup from "../../ThingLinkZoomPopup/ThingLinkZoomPopup";
 
 export default function AssignmentExample2() {
   const imageRef = useRef<HTMLImageElement>(null);
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [previewSelectedItem, setPreviewSelectedItem] = useState<
+    ThingLinkItem | undefined
+  >(undefined);
+
   return (
-    <ThingLinkZoom>
-      <div
-        style={{
-          position: "relative",
-          height: `calc(${imageRef.current?.offsetHeight} + 1px)`,
-          width: `calc(${imageRef.current?.offsetWidth} + 1px)`,
-          margin: "auto",
-        }}
-      >
-        <img
-          src={FINAL_FANTASY_JOBS}
-          alt="Final Fantasy XIV playable classes"
-          ref={imageRef}
-        />
-        {items.map((item, index) => (
-          <div
-            id={`thinglink-spot-${item.id}`}
-            key={item.id}
-            className="thinglink-spot"
-            style={{ top: item.y, left: item.x }}
-          >
-            <TooltipButton
-              text={index.toString()}
-              tooltip={<ThingLinkZoomItemPreview item={item} />}
-              containerRef={imageRef}
-              onClick={() => console.log("derp")}
-            />
-          </div>
-        ))}
-      </div>
-    </ThingLinkZoom>
+    <div>
+      <ThingLinkZoom>
+        <div
+          style={{
+            position: "relative",
+            height: `calc(${imageRef.current?.offsetHeight} + 1px)`,
+            width: `calc(${imageRef.current?.offsetWidth} + 1px)`,
+            margin: "auto",
+          }}
+        >
+          <img
+            src={FINAL_FANTASY_JOBS}
+            alt="Final Fantasy XIV playable classes"
+            ref={imageRef}
+          />
+          {items.map((item, index) => (
+            <div
+              id={`thinglink-spot-${item.id}`}
+              key={item.id}
+              className="thinglink-spot"
+              style={{ top: item.y, left: item.x }}
+            >
+              <TooltipButton
+                text={index.toString()}
+                tooltip={<ThingLinkZoomItemPreview item={item} />}
+                containerRef={imageRef}
+                onClick={() => {
+                  setIsPopupOpen(true);
+                  setPreviewSelectedItem(item);
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </ThingLinkZoom>
+      <ThingLinkZoomPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        selectedItem={previewSelectedItem}
+      />
+    </div>
   );
 }
 
-const items = [
+const items: ThingLinkItem[] = [
   {
     id: "sCePq1fpcx",
     x: "10%",
