@@ -12,12 +12,14 @@ type TooltipButtonProps = {
   text: string;
   tooltip: ReactNode;
   containerRef?: React.RefObject<HTMLDivElement>;
+  onClick?: () => void;
 };
 
 const TooltipButton: React.FC<TooltipButtonProps> = ({
   text,
   tooltip,
   containerRef,
+  onClick,
 }) => {
   const [position, setPosition] = useState("top");
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -59,9 +61,19 @@ const TooltipButton: React.FC<TooltipButtonProps> = ({
     return () => window.removeEventListener("resize", adjustPosition);
   }, [adjustPosition]);
 
+  function handleOnClick() {
+    if (onClick) {
+      onClick();
+    }
+  }
+
   return (
     <div>
-      <button ref={buttonRef} onMouseEnter={() => adjustPosition()}>
+      <button
+        ref={buttonRef}
+        onMouseEnter={() => adjustPosition()}
+        onClick={handleOnClick}
+      >
         {text}
       </button>
       <div ref={tooltipRef} className={`tooltip absolute ${position}`}>

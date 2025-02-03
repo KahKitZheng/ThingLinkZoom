@@ -2,17 +2,9 @@ import { useRef } from "react";
 import TooltipButton from "../../Tooltip/Tooltip";
 import ThingLinkZoom from "../../ThingLinkZoom/ThingLinkZoom";
 import FINAL_FANTASY_JOBS from "../../../assets/ffxiv_jobs.png";
-import "../../ThingLinkZoom/ThingLinkZoom.scss";
+import ThingLinkZoomItemPreview from "../../ThingLinkZoomPreview/ThingLinkZoomPreview";
 import "./AssignmentExample.scss";
-
-type ThingLinkItem = {
-  id: string;
-  x: string;
-  y: string;
-  image?: string;
-  title?: string;
-  description?: string;
-};
+import "../../ThingLinkZoom/ThingLinkZoom.scss";
 
 export default function AssignmentExample2() {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -43,29 +35,12 @@ export default function AssignmentExample2() {
               text={index.toString()}
               tooltip={<ThingLinkZoomItemPreview item={item} />}
               containerRef={imageRef}
+              onClick={() => console.log("derp")}
             />
           </div>
         ))}
       </div>
     </ThingLinkZoom>
-  );
-}
-
-function ThingLinkZoomItemPreview(props: { item: ThingLinkItem }) {
-  const { item } = props;
-
-  return (
-    <div className="thinglink-item">
-      {item.image && (
-        <img src={item.image} alt="" className="thinglink-item__image" />
-      )}
-      <div>
-        {item.title && <p className="thinglink-item__title">{item.title}</p>}
-        {item.description && (
-          <p className="thinglink-item__description">{item.description}</p>
-        )}
-      </div>
-    </div>
   );
 }
 
