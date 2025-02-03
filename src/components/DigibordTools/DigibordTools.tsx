@@ -2,11 +2,9 @@ import { Tldraw, TLUiComponents } from "tldraw";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
 
-type DigibordToolsProps = {};
-
-export default function DigibordTools(props: Readonly<DigibordToolsProps>) {
+export default function DigibordTools() {
   // The type here is include only to ensure this example contains all possible ui components,
-  const components: Required<TLUiComponents> = {
+  const components: TLUiComponents = {
     // ContextMenu: null, // right click menu
     ActionsMenu: null, // top left expandable menu to align items
     // HelpMenu: null,
