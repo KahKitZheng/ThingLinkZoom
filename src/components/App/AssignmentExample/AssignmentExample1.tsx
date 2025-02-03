@@ -32,14 +32,14 @@ function Area(props: { index: number }) {
   return (
     <button
       key={props.index}
-      onClick={() => zoomToElement(props.index)}
+      onClick={() => zoomToElement(props.index.toString())}
       style={{
         backgroundColor: `hsl(calc(${props.index} * 45), 100%, 90%)`,
         color: `hsl(calc(${props.index} * 45), 100%, 30%)`,
       }}
       className="grid-area"
     >
-      <p className="grid-area__text" id={`element-${props.index}`}>
+      <p className="grid-area__text" id={props.index.toString()}>
         Tuesday
       </p>
     </button>

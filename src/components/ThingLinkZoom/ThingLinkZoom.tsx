@@ -8,7 +8,6 @@ import React from "react";
 import useFullScreen from "../../hooks/useFullScreen";
 import { ThingLinkZoomContext } from "./context/ThingLinkZoomContext";
 import "./ThingLinkZoom.scss";
-import ThingLinkZoomPopup from "../ThingLinkZoomPopup/ThingLinkZoomPopup";
 
 type ThingLinkZoomProps = {
   children: React.ReactNode;
@@ -17,7 +16,7 @@ type ThingLinkZoomProps = {
 export default function ThingLinkZoom(props: ThingLinkZoomProps) {
   const { children } = props;
 
-  const [selectId, setSelectId] = useState<number>(-1);
+  const [selectId, setSelectId] = useState<string>("");
 
   const fullScreenContainerRef = useRef<HTMLDivElement>(null);
   const transformComponentRef = useRef<ReactZoomPanPinchRef | null>(null);
@@ -34,7 +33,7 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
     resetTransform();
   }
 
-  function zoomToElement(elementId: number) {
+  function zoomToElement(elementId: string) {
     if (!transformComponentRef.current) {
       return;
     }
@@ -43,17 +42,17 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
 
     if (selectId === elementId) {
       resetZoom();
-      setSelectId(-1);
+      setSelectId("");
     } else {
       setSelectId(elementId);
-      zoomToElement(`element-${elementId}`);
+      zoomToElement(elementId);
     }
   }
 
   function handleOnClickFullScreen() {
     toggleFullScreen();
     resetZoom();
-    setSelectId(-1);
+    setSelectId("");
   }
 
   return (

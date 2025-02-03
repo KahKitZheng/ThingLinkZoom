@@ -1,7 +1,7 @@
 import React from "react";
 
 type ThingLinkZoomContextEntity = {
-  zoomToElement: (elementId: number) => void;
+  zoomToElement: (elementId: string) => void;
 };
 
 export const ThingLinkZoomContext = React.createContext(
