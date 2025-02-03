@@ -4,10 +4,6 @@
   width: 100%;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 html,
 body {
   height: 100%;
@@ -15,13 +11,21 @@ body {
   margin: 0;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+}
+
 .layout {
   background-color: #f5c4c4;
   height: 100%;
   width: 100%;
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: auto 1fr auto;
+  justify-content: space-between;
   gap: 2rem;
   padding: 1rem;
 

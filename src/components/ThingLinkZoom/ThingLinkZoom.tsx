@@ -70,11 +70,14 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
             contentStyle={{ width: "100%", height: "100%" }}
           >
             {children}
+            <button
+              className="full-screen-btn"
+              onClick={handleOnClickFullScreen}
+            >
+              👀
+            </button>
           </TransformComponent>
         </ThingLinkZoomContext.Provider>
-        <button className="full-screen-btn" onClick={handleOnClickFullScreen}>
-          🥸
-        </button>
       </TransformWrapper>
     </div>
   );

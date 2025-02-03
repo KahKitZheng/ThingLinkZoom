@@ -21,7 +21,7 @@ export default function AssignmentExample2() {
 
   return (
     <div>
-      <ThingLinkZoom imageRef={imageRef}>
+      <ThingLinkZoom>
         <div
           style={{
             position: "relative",

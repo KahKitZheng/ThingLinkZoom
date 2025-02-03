@@ -21,7 +21,18 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    border: none;
+    display: grid;
+    place-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 2px dashed #bbb;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      font-size: 1.75rem;
+    }
   }
 }
 
