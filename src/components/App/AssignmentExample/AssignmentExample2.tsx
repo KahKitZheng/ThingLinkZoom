@@ -50,12 +50,12 @@ export default function AssignmentExample2() {
             </div>
           ))}
         </div>
+        <ThingLinkZoomPopup
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+          selectedItem={previewSelectedItem}
+        />
       </ThingLinkZoom>
-      <ThingLinkZoomPopup
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-        selectedItem={previewSelectedItem}
-      />
     </div>
   );
 }

@@ -56,12 +56,12 @@ export default function AssignmentExample2() {
             <ZoomArea key={index} item={area} />
           ))}
         </div>
+        <ThingLinkZoomPopup
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+          selectedItem={previewSelectedItem}
+        />
       </ThingLinkZoom>
-      <ThingLinkZoomPopup
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-        selectedItem={previewSelectedItem}
-      />
     </div>
   );
 }
