@@ -1,0 +1,39 @@
+.tooltip {
+  white-space: nowrap;
+
+  button:hover + &.absolute {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.absolute {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  &.top {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.bottom {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &.left {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &.right {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

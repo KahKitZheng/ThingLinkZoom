@@ -6,6 +6,7 @@ import React, {
   useCallback,
   useLayoutEffect,
 } from "react";
+import "./Tooltip.scss";
 
 type TooltipButtonProps = {
   text: string;
@@ -63,50 +64,9 @@ const TooltipButton: React.FC<TooltipButtonProps> = ({
       <button ref={buttonRef} onMouseEnter={() => adjustPosition()}>
         {text}
       </button>
-      <div
-        ref={tooltipRef}
-        className={`absolute ${position}`}
-        style={{
-          whiteSpace: "nowrap",
-        }}
-      >
+      <div ref={tooltipRef} className={`tooltip absolute ${position}`}>
         {tooltip}
       </div>
-      <style jsx>{`
-        .absolute {
-          visibility: hidden;
-          opacity: 0;
-          transition: opacity 0.2s;
-        }
-        button:hover + .absolute {
-          visibility: visible;
-          opacity: 1;
-        }
-        .top {
-          position: absolute;
-          bottom: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        .bottom {
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        .left {
-          position: absolute;
-          right: 100%;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-        .right {
-          position: absolute;
-          left: 100%;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-      `}</style>
     </div>
   );
 };
