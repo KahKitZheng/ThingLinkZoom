@@ -1,4 +1,10 @@
 #root {
+  --primary-color: #a0232a;
+  --secondary-color: #db8b93;
+  --tertiary-color: #f5c4c4;
+  --prim-text: #ffffff;
+  --sec-ter-text: #3b1318;
+
   margin: 0 auto;
   height: 100%;
   width: 100%;
@@ -20,7 +26,7 @@ img {
 }
 
 .layout {
-  background-color: #f5c4c4;
+  background-color: var(--tertiary-color);
   height: 100%;
   width: 100%;
   display: flex;
