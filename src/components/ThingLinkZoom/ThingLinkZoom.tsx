@@ -77,21 +77,21 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
             contentStyle={{ width: "100%", height: "100%" }}
           >
             {children}
-            <ThingLinkZoomPopup
-              isOpen={props.selectedItem !== undefined}
-              onClose={() => {
-                if (props.setPreviewSelectedItem) {
-                  props.setPreviewSelectedItem(undefined);
-                }
-              }}
-              selectedItem={props.selectedItem}
-            />
           </TransformComponent>
         </ThingLinkZoomContext.Provider>
         <button className="full-screen-btn" onClick={handleOnClickFullScreen}>
           👀
         </button>
       </TransformWrapper>
+      <ThingLinkZoomPopup
+        isOpen={props.selectedItem !== undefined}
+        onClose={() => {
+          if (props.setPreviewSelectedItem) {
+            props.setPreviewSelectedItem(undefined);
+          }
+        }}
+        selectedItem={props.selectedItem}
+      />
     </div>
   );
 }
