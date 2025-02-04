@@ -3,7 +3,6 @@ import Pikachu from "../../../assets/pikachu.png";
 import TooltipButton from "../../Tooltip/Tooltip";
 import ThingLinkZoom from "../../ThingLinkZoom/ThingLinkZoom";
 import ThingLinkZoomItemPreview from "../../ThingLinkZoomPreview/ThingLinkZoomPreview";
-import ThingLinkZoomPopup from "../../ThingLinkZoomPopup/ThingLinkZoomPopup";
 import "./AssignmentExample.scss";
 import "../../ThingLinkZoom/ThingLinkZoom.scss";
 import { ThingLinkZoomContext } from "../../ThingLinkZoom/context/ThingLinkZoomContext";
@@ -11,7 +10,6 @@ import { ThingLinkZoomContext } from "../../ThingLinkZoom/context/ThingLinkZoomC
 export default function AssignmentExample2() {
   const imageRef = useRef<HTMLImageElement>(null);
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [previewSelectedItem, setPreviewSelectedItem] = useState<
     ThingLinkItem | undefined
   >(undefined);
@@ -43,7 +41,6 @@ export default function AssignmentExample2() {
                 tooltip={<ThingLinkZoomItemPreview item={item} />}
                 containerRef={imageRef}
                 onClick={() => {
-                  setIsPopupOpen(true);
                   setPreviewSelectedItem(item);
                 }}
               />
