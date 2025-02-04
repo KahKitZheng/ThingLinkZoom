@@ -9,7 +9,7 @@ import AssignmentExample3 from "./AssignmentExample/AssignmentExample3";
 const MAX_STEPS = 2;
 
 export default function App() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
   function prevStep() {
     if (step <= 0) {

@@ -5,19 +5,20 @@ import FINAL_FANTASY_JOBS from "../../../assets/ffxiv_jobs.png";
 import ThingLinkZoomItemPreview from "../../ThingLinkZoomPreview/ThingLinkZoomPreview";
 import "./AssignmentExample.scss";
 import "../../ThingLinkZoom/ThingLinkZoom.scss";
-import ThingLinkZoomPopup from "../../ThingLinkZoomPopup/ThingLinkZoomPopup";
 
 export default function AssignmentExample2() {
   const imageRef = useRef<HTMLImageElement>(null);
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [previewSelectedItem, setPreviewSelectedItem] = useState<
     ThingLinkItem | undefined
   >(undefined);
 
   return (
     <div>
-      <ThingLinkZoom>
+      <ThingLinkZoom
+        selectedItem={previewSelectedItem}
+        setPreviewSelectedItem={setPreviewSelectedItem}
+      >
         <div
           style={{
             position: "relative",
@@ -42,19 +43,11 @@ export default function AssignmentExample2() {
                 text={index.toString()}
                 tooltip={<ThingLinkZoomItemPreview item={item} />}
                 containerRef={imageRef}
-                onClick={() => {
-                  setIsPopupOpen(true);
-                  setPreviewSelectedItem(item);
-                }}
+                onClick={() => setPreviewSelectedItem(item)}
               />
             </div>
           ))}
         </div>
-        <ThingLinkZoomPopup
-          isOpen={isPopupOpen}
-          onClose={() => setIsPopupOpen(false)}
-          selectedItem={previewSelectedItem}
-        />
       </ThingLinkZoom>
     </div>
   );

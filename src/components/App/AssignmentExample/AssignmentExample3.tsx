@@ -18,7 +18,10 @@ export default function AssignmentExample2() {
 
   return (
     <div>
-      <ThingLinkZoom>
+      <ThingLinkZoom
+        selectedItem={previewSelectedItem}
+        setPreviewSelectedItem={setPreviewSelectedItem}
+      >
         <div
           style={{
             position: "relative",
@@ -27,12 +30,7 @@ export default function AssignmentExample2() {
             margin: "auto",
           }}
         >
-          <img
-            src={Pikachu}
-            alt="Pokemon TCG - pikachu"
-            ref={imageRef}
-            style={{ padding: "8rem" }}
-          />
+          <img src={Pikachu} alt="Pokemon TCG - pikachu" ref={imageRef} />
           {items.map((item) => (
             <div
               id={`thinglink-spot-${item.id}`}
@@ -92,8 +90,8 @@ function ZoomArea({ item }: { item: ZoomElement }) {
 const items: ThingLinkItem[] = [
   {
     id: "sCePq1fpcx",
-    x: "47%",
-    y: "18.5%",
+    x: "45%",
+    y: "4%",
     image: undefined,
     title: "Pikachu",
     description:
@@ -112,5 +110,5 @@ const items: ThingLinkItem[] = [
 ];
 
 const areas: ZoomElement[] = [
-  { id: "sCePq1fpcx", x: "24%", y: "22.5%", height: "26%", width: "52%" },
+  { id: "sCePq1fpcx", x: "24%", y: "15%", height: "30%", width: "52%" },
 ];

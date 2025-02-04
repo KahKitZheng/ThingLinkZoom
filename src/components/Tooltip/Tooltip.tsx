@@ -35,8 +35,8 @@ const TooltipButton: React.FC<TooltipButtonProps> = ({
 
     let newPosition = "top";
 
-    if (buttonRect.top - tooltipRect.height < containerRect.top) {
-      newPosition = "bottom";
+    if (buttonRect.right + tooltipRect.width > containerRect.right) {
+      newPosition = "left";
     }
     if (buttonRect.bottom + tooltipRect.height > containerRect.bottom) {
       newPosition = "top";
@@ -44,8 +44,8 @@ const TooltipButton: React.FC<TooltipButtonProps> = ({
     if (buttonRect.left - tooltipRect.width < containerRect.left) {
       newPosition = "right";
     }
-    if (buttonRect.right + tooltipRect.width > containerRect.right) {
-      newPosition = "left";
+    if (buttonRect.top - tooltipRect.height < containerRect.top) {
+      newPosition = "bottom";
     }
 
     setPosition(newPosition);
