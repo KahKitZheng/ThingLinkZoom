@@ -73,6 +73,7 @@ function ZoomArea({ item }: { item: ZoomElement }) {
         padding: "0",
       }}
       onClick={() => zoomToElement(item.id)}
+      className="zoom-area"
     >
       <div id={item.id} style={{ height: "100%", width: "100%" }}></div>
     </button>
