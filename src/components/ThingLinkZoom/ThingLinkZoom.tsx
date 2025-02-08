@@ -56,7 +56,11 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
 
   // todo: does not reset properly when entering/exiting full-screen, because of the animation
   // animation needs to finish to get the correct width to reset to
-  function handleOnClickFullScreen() {
+  function handleOnClickFullScreen(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+
     toggleFullScreen();
     resetZoom();
     setSelectId("");
@@ -79,7 +83,13 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
             {children}
           </TransformComponent>
         </ThingLinkZoomContext.Provider>
-        <button className="full-screen-btn" onClick={handleOnClickFullScreen}>
+        <button
+          className="full-screen-btn"
+          onClick={(e) => handleOnClickFullScreen(e)}
+          onPointerDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
+        >
           👀
         </button>
       </TransformWrapper>

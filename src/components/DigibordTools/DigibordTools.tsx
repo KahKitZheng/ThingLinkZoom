@@ -1,24 +1,13 @@
-import {
-  Editor,
-  Tldraw,
-  TLUiComponents,
-  TLUiOverrides,
-  useValue,
-} from "tldraw";
+import { useState } from "react";
+import { createShapeId, Editor, Tldraw, TLUiComponents } from "tldraw";
+import { AssignmentShape, AssignmentShapeType } from "./shapes/AssignmentShape";
+import ExternalToolbar from "./components/Toolbar/Toolbar";
+import Assignments from "../Assignments/Assignments";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
-import { createContext, useState } from "react";
-import ExternalToolbar from "./components/Toolbar/Toolbar";
-import useIsDigibordToolsActive from "./hooks/useIsDigibordToolsActive";
-import { CustomTool } from "./CustomTool";
+import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
 
-type DigibordToolsProps = {
-  children?: React.ReactNode;
-};
-
-export const editorContext = createContext({} as { editor: Editor });
-
-export default function DigibordTools(props: DigibordToolsProps) {
+export default function DigibordTools() {
   const [editor, setEditor] = useState<Editor | null>(null);
 
   // The type here is include only to ensure this example contains all possible ui components,
@@ -44,48 +33,88 @@ export default function DigibordTools(props: DigibordToolsProps) {
     // CursorChatBubble: null,
   };
 
-  const customTools = [CustomTool];
-
-  const customUiOverrides: TLUiOverrides = {
-    tools: (editor, tools) => {
-      return {
-        ...tools,
-        idle: {
-          id: "idle",
-          label: "Assignments",
-          icon: "tool-screenshot",
-          kbd: "j",
-          onSelect() {
-            editor.setCurrentTool("idle");
-          },
-        },
-      };
-    },
-  };
-
-  const currentToolId = useValue(
-    "current tool id",
-    () => editor?.getCurrentToolId(),
-    [editor]
-  );
+  const customShapeUtils = [AssignmentShape];
 
   return (
-    <div className={`digibord-tools ${currentToolId === "idle" ? "idle" : ""}`}>
+    <>
       <Tldraw
         components={components}
-        persistenceKey={new Date().toLocaleDateString("nl-NL")}
-        cameraOptions={{ isLocked: true }}
-        onMount={(editor) => setEditor(editor)}
-        tools={customTools}
-        overrides={customUiOverrides}
-      >
-        {props.children}
-      </Tldraw>
+        // persistenceKey={new Date().toLocaleDateString("nl-NL")}
+        cameraOptions={{
+          zoomSteps: [1, 2, 4],
+          constraints: {
+            initialZoom: "default",
+            baseZoom: "default",
+            bounds: {
+              x: 0,
+              y: 0,
+              w: window.innerWidth,
+              h: window.innerHeight,
+            },
+            behavior: { x: "contain", y: "contain" },
+            padding: { x: 0, y: 0 },
+            origin: { x: 0.5, y: 0.5 },
+          },
+        }}
+        shapeUtils={customShapeUtils}
+        onMount={(editor) => {
+          setEditor(editor);
+
+          // WILL CREATE AN 2 ASSIGNMENT SHAPES ON MOUNT BECAUSE OF STRICT MODE
+          editor.createShape({
+            id: createShapeId(),
+            type: "assignment-shape",
+            x: 0,
+            y: 0,
+            props: {
+              assignments: <Assignments />,
+            },
+          });
+
+          // PREVENTS ASSIGNMENT SHAPES FROM BEING DELETED, OTHERWISE THE WHOLE PAGE WILL BE DELETED
+          editor.sideEffects.registerBeforeDeleteHandler("shape", (shape) => {
+            if (shape.type === "assignment-shape") {
+              return false;
+            }
+
+            return;
+          });
+
+          // PREVENTS ASSIGNMENT SHAPES FROM BEING MOVED
+          editor.sideEffects.registerBeforeChangeHandler(
+            "shape",
+            (prev, next) => {
+              if (
+                editor.isShapeOfType<AssignmentShapeType>(
+                  prev,
+                  "assignment-shape"
+                ) &&
+                editor.isShapeOfType<AssignmentShapeType>(
+                  next,
+                  "assignment-shape"
+                )
+              ) {
+                if (
+                  next.x !== prev.x ||
+                  next.y !== prev.y ||
+                  next.rotation !== prev.rotation ||
+                  next.props.w !== prev.props.w ||
+                  next.props.h !== prev.props.h
+                ) {
+                  return prev;
+                }
+              }
+              return next;
+            }
+          );
+        }}
+      />
+
       {editor && (
-        <editorContext.Provider value={{ editor }}>
+        <TLDrawEditorContext.Provider value={{ editor }}>
           <ExternalToolbar />
-        </editorContext.Provider>
+        </TLDrawEditorContext.Provider>
       )}
-    </div>
+    </>
   );
 }

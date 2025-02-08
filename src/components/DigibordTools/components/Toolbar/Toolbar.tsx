@@ -1,21 +1,16 @@
 import { useContext } from "react";
 import { useValue, GeoShapeGeoStyle } from "tldraw";
-import { editorContext } from "../../DigibordTools";
+import { TLDrawEditorContext } from "../../context/TLDrawEditorContext";
 import "./Toolbar.scss";
-import useIsDigibordToolsActive from "../../hooks/useIsDigibordToolsActive";
 
 export default function ExternalToolbar() {
-  const { editor } = useContext(editorContext);
-
-  const isDigibordToolsActive = useIsDigibordToolsActive();
+  const { editor } = useContext(TLDrawEditorContext);
 
   const currentToolId = useValue(
     "current tool id",
     () => editor?.getCurrentToolId(),
     [editor]
   );
-
-  console.log("currentToolId", currentToolId);
 
   function isToolActive(toolId: string) {
     return currentToolId === toolId;
@@ -27,13 +22,6 @@ export default function ExternalToolbar() {
 
   return (
     <div id="digibord-toolbar" className="external-toolbar">
-      <button
-        className="external-button"
-        data-isactive={isToolActive("idle")}
-        onClick={() => handleOnClickTool("idle")}
-      >
-        Idle
-      </button>
       <button
         className="external-button"
         data-isactive={isToolActive("select")}

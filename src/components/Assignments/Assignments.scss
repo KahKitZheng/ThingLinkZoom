@@ -1,0 +1,22 @@
+.layout {
+  background-color: var(--tertiary-color);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem;
+
+  .nav-btn {
+    background-color: white;
+    border-radius: 10px;
+    border: 0;
+    height: 80px;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+}
