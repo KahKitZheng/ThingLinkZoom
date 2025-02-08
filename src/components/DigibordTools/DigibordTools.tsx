@@ -1,20 +1,31 @@
-import { Tldraw, TLUiComponents } from "tldraw";
+import { Editor, Tldraw, TLUiComponents } from "tldraw";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
+import { createContext, useState } from "react";
+import ExternalToolbar from "./components/Toolbar/Toolbar";
+import useIsDigibordToolsActive from "./hooks/useIsDigibordToolsActive";
 
-export default function DigibordTools() {
+type DigibordToolsProps = {
+  children?: React.ReactNode;
+};
+
+export const editorContext = createContext({} as { editor: Editor });
+
+export default function DigibordTools(props: DigibordToolsProps) {
+  const [editor, setEditor] = useState<Editor | null>(null);
+
   // The type here is include only to ensure this example contains all possible ui components,
   const components: TLUiComponents = {
     // ContextMenu: null, // right click menu
     ActionsMenu: null, // top left expandable menu to align items
     // HelpMenu: null,
-    // ZoomMenu: null, // bottom left zoom menu
+    ZoomMenu: null, // bottom left zoom menu
     MainMenu: null, // top left hamburger menu
     Minimap: null, // expandable minimap in bottom left
     // StylePanel: null, // top right menu with color pickers
     PageMenu: null, // top left, available pages
     // NavigationPanel: null, // zoomMenu + Minimap
-    // Toolbar: null, // tools at bottom center
+    Toolbar: null, // tools at bottom center
     KeyboardShortcutsDialog: null,
     // QuickActions: null, // undo, redo, duplicate, delete
     // HelperButtons: null,
@@ -26,16 +37,21 @@ export default function DigibordTools() {
     // CursorChatBubble: null,
   };
 
-  // todays date in dd-mm-yyyy format
-  const today = new Date().toLocaleDateString("nl-NL");
-
   return (
-    <div style={{ position: "fixed", inset: 0 }}>
+    <div className="digibord-tools">
       <Tldraw
         components={components}
-        persistenceKey={today}
+        persistenceKey={new Date().toLocaleDateString("nl-NL")}
         cameraOptions={{ isLocked: true }}
-      />
+        onMount={(editor) => setEditor(editor)}
+      >
+        {props.children}
+      </Tldraw>
+      {editor && (
+        <editorContext.Provider value={{ editor }}>
+          <ExternalToolbar />
+        </editorContext.Provider>
+      )}
     </div>
   );
 }

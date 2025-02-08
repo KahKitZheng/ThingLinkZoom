@@ -1,15 +1,16 @@
 import { useState } from "react";
 import "./App.scss";
-import "../DigibordTools/DigibordTools.scss";
 import "tldraw/tldraw.css";
+import "../DigibordTools/DigibordTools.scss"; // after tldraw.css
 import AssignmentExample1 from "./AssignmentExample/AssignmentExample1";
 import AssignmentExample2 from "./AssignmentExample/AssignmentExample2";
 import AssignmentExample3 from "./AssignmentExample/AssignmentExample3";
+import DigibordTools from "../DigibordTools/DigibordTools";
 
 const MAX_STEPS = 2;
 
 export default function App() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
 
   function prevStep() {
     if (step <= 0) {
@@ -26,14 +27,8 @@ export default function App() {
   }
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <div style={{ position: "relative", height: "100%" }}>
+      <DigibordTools />
       <main className="layout">
         <button className="nav-btn" onClick={prevStep}>
           prev

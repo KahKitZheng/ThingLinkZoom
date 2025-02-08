@@ -35,6 +35,10 @@ img {
   gap: 2rem;
   padding: 1rem;
 
+  & * {
+    pointer-events: all;
+  }
+
   .nav-btn {
     background-color: white;
     border-radius: 10px;
