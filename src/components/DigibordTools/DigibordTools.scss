@@ -3,13 +3,11 @@
   background-color: transparent !important;
 }
 
-// .tlui-toolbar__tools {
-//   position: absolute;
-//   bottom: 4px;
-//   left: 50%;
-//   transform: translateX(-50%);
-//   z-index: 500000;
-// }
+// set the UI on the foreground on top of the assignments
+.tlui-layout {
+  position: fixed;
+  inset: 0;
+}
 
 // hide watermark
 .tl-watermark_SEE-LICENSE {

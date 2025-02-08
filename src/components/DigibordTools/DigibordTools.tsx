@@ -2,13 +2,17 @@ import { Tldraw, TLUiComponents } from "tldraw";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
 
-export default function DigibordTools() {
+type DigibordToolsProps = {
+  children?: React.ReactNode;
+};
+
+export default function DigibordTools(props: DigibordToolsProps) {
   // The type here is include only to ensure this example contains all possible ui components,
   const components: TLUiComponents = {
     // ContextMenu: null, // right click menu
     ActionsMenu: null, // top left expandable menu to align items
     // HelpMenu: null,
-    // ZoomMenu: null, // bottom left zoom menu
+    ZoomMenu: null, // bottom left zoom menu
     MainMenu: null, // top left hamburger menu
     Minimap: null, // expandable minimap in bottom left
     // StylePanel: null, // top right menu with color pickers
@@ -26,16 +30,15 @@ export default function DigibordTools() {
     // CursorChatBubble: null,
   };
 
-  // todays date in dd-mm-yyyy format
-  const today = new Date().toLocaleDateString("nl-NL");
-
   return (
-    <div style={{ position: "fixed", inset: 0 }}>
-      <Tldraw
-        components={components}
-        persistenceKey={today}
-        cameraOptions={{ isLocked: true }}
-      />
-    </div>
+    // <div style={{ position: "fixed", inset: 0 }}>
+    <Tldraw
+      components={components}
+      persistenceKey={new Date().toLocaleDateString("nl-NL")}
+      cameraOptions={{ isLocked: true }}
+    >
+      {props.children}
+    </Tldraw>
+    // </div>
   );
 }
