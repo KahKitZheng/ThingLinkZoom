@@ -40,22 +40,6 @@ export default function DigibordTools() {
       <Tldraw
         components={components}
         // persistenceKey={new Date().toLocaleDateString("nl-NL")}
-        cameraOptions={{
-          zoomSteps: [1, 2, 4],
-          constraints: {
-            initialZoom: "default",
-            baseZoom: "default",
-            bounds: {
-              x: 0,
-              y: 0,
-              w: window.innerWidth,
-              h: window.innerHeight,
-            },
-            behavior: { x: "contain", y: "contain" },
-            padding: { x: 0, y: 0 },
-            origin: { x: 0.5, y: 0.5 },
-          },
-        }}
         shapeUtils={customShapeUtils}
         onMount={(editor) => {
           setEditor(editor);
@@ -70,43 +54,6 @@ export default function DigibordTools() {
               assignments: <Assignments />,
             },
           });
-
-          // PREVENTS ASSIGNMENT SHAPES FROM BEING DELETED, OTHERWISE THE WHOLE PAGE WILL BE DELETED
-          editor.sideEffects.registerBeforeDeleteHandler("shape", (shape) => {
-            if (shape.type === "assignment-shape") {
-              return false;
-            }
-
-            return;
-          });
-
-          // PREVENTS ASSIGNMENT SHAPES FROM BEING MOVED
-          editor.sideEffects.registerBeforeChangeHandler(
-            "shape",
-            (prev, next) => {
-              if (
-                editor.isShapeOfType<AssignmentShapeType>(
-                  prev,
-                  "assignment-shape"
-                ) &&
-                editor.isShapeOfType<AssignmentShapeType>(
-                  next,
-                  "assignment-shape"
-                )
-              ) {
-                if (
-                  next.x !== prev.x ||
-                  next.y !== prev.y ||
-                  next.rotation !== prev.rotation ||
-                  next.props.w !== prev.props.w ||
-                  next.props.h !== prev.props.h
-                ) {
-                  return prev;
-                }
-              }
-              return next;
-            }
-          );
         }}
       />
 
