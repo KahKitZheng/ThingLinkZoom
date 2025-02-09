@@ -10,7 +10,6 @@ import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
 export default function DigibordTools() {
   const [editor, setEditor] = useState<Editor | null>(null);
 
-  // The type here is include only to ensure this example contains all possible ui components,
   const components: TLUiComponents = {
     ContextMenu: null, // right click menu
     ActionsMenu: null, // top left expandable menu to align items
@@ -35,33 +34,64 @@ export default function DigibordTools() {
 
   const customShapeUtils = [AssignmentShape];
 
+  // WILL CREATE AN 2 ASSIGNMENT SHAPES ON MOUNT BECAUSE OF STRICT MODE
+  function addAssignmentShape(editor: Editor) {
+    editor.createShape({
+      id: createShapeId(),
+      type: "assignment-shape",
+      x: 0,
+      y: 0,
+      props: { assignments: <Assignments /> },
+    });
+  }
+
+  // PREVENTS ASSIGNMENT SHAPES FROM BEING DELETED, OTHERWISE THE WHOLE PAGE WILL BE DELETED
+  function disallowAssignmentShapeDeletion(editor: Editor) {
+    editor.sideEffects.registerBeforeDeleteHandler("shape", (shape) => {
+      if (shape.type === "assignment-shape") {
+        return false;
+      } else {
+        return;
+      }
+    });
+  }
+
+  // PREVENTS ASSIGNMENT SHAPES FROM BEING MOVED
+  function disallowAssignmentShapeMove(editor: Editor) {
+    editor.sideEffects.registerBeforeChangeHandler("shape", (prev, next) => {
+      if (
+        editor.isShapeOfType<AssignmentShapeType>(prev, "assignment-shape") &&
+        editor.isShapeOfType<AssignmentShapeType>(next, "assignment-shape")
+      ) {
+        if (
+          next.x !== prev.x ||
+          next.y !== prev.y ||
+          next.rotation !== prev.rotation ||
+          next.props.w !== prev.props.w ||
+          next.props.h !== prev.props.h
+        ) {
+          return prev;
+        }
+      }
+      return next;
+    });
+  }
+
   return (
-    <>
+    <TLDrawEditorContext.Provider value={{ editor: editor }}>
       <Tldraw
-        components={components}
         // persistenceKey={new Date().toLocaleDateString("nl-NL")}
+        components={components}
         shapeUtils={customShapeUtils}
         onMount={(editor) => {
           setEditor(editor);
 
-          // WILL CREATE AN 2 ASSIGNMENT SHAPES ON MOUNT BECAUSE OF STRICT MODE
-          editor.createShape({
-            id: createShapeId(),
-            type: "assignment-shape",
-            x: 0,
-            y: 0,
-            props: {
-              assignments: <Assignments />,
-            },
-          });
+          addAssignmentShape(editor);
+          disallowAssignmentShapeDeletion(editor);
+          disallowAssignmentShapeMove(editor);
         }}
       />
-
-      {editor && (
-        <TLDrawEditorContext.Provider value={{ editor }}>
-          <ExternalToolbar />
-        </TLDrawEditorContext.Provider>
-      )}
-    </>
+      <ExternalToolbar />
+    </TLDrawEditorContext.Provider>
   );
 }

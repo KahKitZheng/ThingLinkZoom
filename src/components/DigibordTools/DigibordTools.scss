@@ -9,9 +9,10 @@
 // }
 
 // // makes canvas transparent
-// .tl-background {
-//   // background-color: transparent !important;
-// }
+.tl-background {
+  // background-color: transparent !important;
+  background-color: var(--tertiary-color);
+}
 
 // // set the UI on the foreground on top of the assignments
 // .tlui-layout {
