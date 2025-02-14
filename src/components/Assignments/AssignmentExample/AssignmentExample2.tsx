@@ -14,7 +14,7 @@ export default function AssignmentExample2() {
   >(undefined);
 
   return (
-    <div>
+    <div className="assignment-2">
       <ThingLinkZoom
         selectedItem={previewSelectedItem}
         setPreviewSelectedItem={setPreviewSelectedItem}
