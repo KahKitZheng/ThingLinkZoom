@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { TLDrawEditorContext } from "../DigibordTools/context/TLDrawEditorContext";
 import AssignmentExample1 from "./AssignmentExample/AssignmentExample1";
 import AssignmentExample2 from "./AssignmentExample/AssignmentExample2";
@@ -9,9 +9,7 @@ import "./Assignments.scss";
 const MAX_STEPS = 3;
 
 export default function Assignments() {
-  const { editor } = useContext(TLDrawEditorContext);
-
-  const [step, setStep] = useState(MAX_STEPS);
+  const { editor, step, setStep } = useContext(TLDrawEditorContext);
 
   const assignmentsRef = useRef<HTMLDivElement>(null);
 
