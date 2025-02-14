@@ -1,7 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { TLDrawEditorContext } from "../DigibordTools/context/TLDrawEditorContext";
-import { AssignmentShapeType } from "../DigibordTools/shapes/AssignmentShape";
-import { TLShapePartial } from "tldraw";
 import AssignmentExample1 from "./AssignmentExample/AssignmentExample1";
 import AssignmentExample2 from "./AssignmentExample/AssignmentExample2";
 import AssignmentExample3 from "./AssignmentExample/AssignmentExample3";
@@ -54,32 +52,6 @@ export default function Assignments() {
           origin: { x: 0.5, y: 0.5 },
         },
       });
-
-      // update shape
-      const assignmentShape = editor.getShapeAtPoint({ x: 0, y: 0 });
-
-      // const shapeUpdate: TLShapePartial<AssignmentShapeType> = {
-      //   id: assignmentShape!.id,
-      //   type: assignmentShape!.type,
-      //   props: {
-      //     w: window.innerWidth,
-      //     h: assignmentsRef.current.clientHeight ?? window.innerHeight,
-      //   },
-      // };
-
-      // Update the shape
-      editor.updateShapes([
-        {
-          id: assignmentShape!.id,
-          type: assignmentShape!.type,
-          props: {
-            w: window.innerWidth,
-            h: assignmentsRef.current.clientHeight ?? window.innerHeight,
-          },
-        },
-      ]);
-
-      console.log("test", assignmentShape, window.innerWidth);
     }
 
     updateCameraOptions();

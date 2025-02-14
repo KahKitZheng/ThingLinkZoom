@@ -4,5 +4,9 @@ import "../DigibordTools/DigibordTools.scss"; // after tldraw.css
 import DigibordTools from "../DigibordTools/DigibordTools";
 
 export default function App() {
-  return <DigibordTools />;
+  return (
+    // <div style={{ height: "100vh", width: "100vw" }}>
+    <DigibordTools />
+    // </div>
+  );
 }
