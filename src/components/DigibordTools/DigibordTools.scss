@@ -1,26 +1,16 @@
-// .digibord-tools {
-//   // position: absolute;
-//   // inset: 0;
-//   // z-index: 1;
-
-//   &.idle {
-//     // pointer-events: none; // important to allow interaction with the canvas and the assignments
-//   }
-// }
-
-// // makes canvas transparent
-.tl-background {
-  // background-color: transparent !important;
+.digibord-tools-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--tertiary-color);
 }
 
-// // set the UI on the foreground on top of the assignments
-// .tlui-layout {
-//   // position: fixed;
-//   // inset: 0;
-// }
+.tl-container__focused {
+  outline: none;
+}
 
-// hide watermark
-.tl-watermark_SEE-LICENSE {
-  display: none !important; // is this allowed?
+.tl-background {
+  background-color: var(--tertiary-color);
 }

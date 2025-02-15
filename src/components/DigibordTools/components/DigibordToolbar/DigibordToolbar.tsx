@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useValue, GeoShapeGeoStyle } from "tldraw";
 import { TLDrawEditorContext } from "../../context/TLDrawEditorContext";
-import "./Toolbar.scss";
+import "./DigibordToolbar.scss";
 
-export default function ExternalToolbar() {
+export default function DigibordToolbar() {
   const { editor } = useContext(TLDrawEditorContext);
 
   const currentToolId = useValue(
@@ -17,7 +17,7 @@ export default function ExternalToolbar() {
   }
 
   function handleOnClickTool(selectedTool: string) {
-    return editor.setCurrentTool(selectedTool);
+    return editor?.setCurrentTool(selectedTool);
   }
 
   return (
@@ -50,8 +50,8 @@ export default function ExternalToolbar() {
           editor?.getStyleForNextShape(GeoShapeGeoStyle) === "oval"
         }
         onClick={() => {
-          editor.run(() => {
-            editor.setStyleForNextShapes(GeoShapeGeoStyle, "oval");
+          editor?.run(() => {
+            editor?.setStyleForNextShapes(GeoShapeGeoStyle, "oval");
             handleOnClickTool("geo");
           });
         }}

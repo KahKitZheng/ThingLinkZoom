@@ -1,4 +1,4 @@
-import { useContext, useEffect, useLayoutEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import { TLDrawEditorContext } from "../DigibordTools/context/TLDrawEditorContext";
 import AssignmentExample1 from "./AssignmentExample/AssignmentExample1";
 import AssignmentExample2 from "./AssignmentExample/AssignmentExample2";
@@ -9,10 +9,11 @@ import "./Assignments.scss";
 export default function Assignments() {
   const { editor, step } = useContext(TLDrawEditorContext);
 
+  // refs doesn't re-render the component, so we use getElementById instead
   const assignmentContainerEl = document.getElementById("assignment-container");
 
   useEffect(() => {
-    // Once the assignment is loaded, update the camera options to fit tall assignments better
+    // Once the assignment is loaded, update camera options to fit assignments taller than viewport
     function updateCameraOptions() {
       if (!editor || !assignmentContainerEl) {
         return;

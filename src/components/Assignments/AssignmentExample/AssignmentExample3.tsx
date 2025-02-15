@@ -1,11 +1,11 @@
 import { useContext, useRef, useState } from "react";
+import { ThingLinkZoomContext } from "../../ThingLinkZoom/context/ThingLinkZoomContext";
 import Pikachu from "../../../assets/pikachu.png";
 import TooltipButton from "../../Tooltip/Tooltip";
 import ThingLinkZoom from "../../ThingLinkZoom/ThingLinkZoom";
 import ThingLinkZoomItemPreview from "../../ThingLinkZoomPreview/ThingLinkZoomPreview";
 import "./AssignmentExample.scss";
 import "../../ThingLinkZoom/ThingLinkZoom.scss";
-import { ThingLinkZoomContext } from "../../ThingLinkZoom/context/ThingLinkZoomContext";
 
 export default function AssignmentExample2() {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -97,16 +97,6 @@ const items: ThingLinkItem[] = [
     description:
       "Pikachu is Pokémon #025 in the National Pokédex. It is an Electric-type Pokémon introduced in Generation 1 and is the mascot of the Pokémon franchise. Pikachu evolves from Pichu when leveled up with high friendship and can evolve into Raichu (or Alolan Raichu with a Thunder Stone in Alola).",
   },
-  // {
-  //   id: "1Zl01h55hr",
-  //   x: "87%",
-  //   y: "68%",
-  //   image:
-  //     "https://lds-img.finalfantasyxiv.com/promo/h/b/d7BM1x8OZRZU-9fTk-D7g1t2oc.png",
-  //   title: "Attack points",
-  //   description:
-  //     "Number of damage dealt to opponent's Pokémon. The higher the number, the more damage dealt.",
-  // },
 ];
 
 const areas: ZoomElement[] = [

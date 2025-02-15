@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Editor, Tldraw } from "tldraw";
-import { AssignmentShape } from "./shapes/AssignmentShape";
 import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
-import ExternalToolbar from "./components/Toolbar/Toolbar";
+import DigibordToolbar from "./components/DigibordToolbar/DigibordToolbar";
 import Assignments from "../Assignments/Assignments";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
@@ -39,33 +38,16 @@ export default function DigibordTools(props: DigibordToolsProps) {
     OnTheCanvas: Assignments,
   };
 
-  const customShapeUtils = [AssignmentShape];
-
-  // const today = new Date().toLocaleDateString("nl-NL");
-
   return (
     <TLDrawEditorContext.Provider value={{ editor, step }}>
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "var(--tertiary-color)",
-        }}
-      >
+      <div className="digibord-tools-container">
         <Tldraw
           persistenceKey={`step-${step}`}
           components={components}
-          shapeUtils={customShapeUtils}
-          onMount={(editor) => {
-            setEditor(editor);
-          }}
+          onMount={(editor) => setEditor(editor)}
         />
       </div>
-      <ExternalToolbar />
+      <DigibordToolbar />
     </TLDrawEditorContext.Provider>
   );
 }
