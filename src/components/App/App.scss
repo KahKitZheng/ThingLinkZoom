@@ -15,6 +15,7 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+  background-color: var(--tertiary-color);
 }
 
 * {
@@ -23,4 +24,28 @@ body {
 
 img {
   display: block;
+}
+
+.nav-btn {
+  background-color: white;
+  border-radius: 10px;
+  border: 0;
+  height: 80px;
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &.prev {
+    left: 1rem;
+  }
+
+  &.next {
+    right: 1rem;
+  }
 }

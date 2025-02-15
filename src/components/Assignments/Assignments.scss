@@ -6,19 +6,7 @@
   background-color: var(--tertiary-color);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 2rem;
   padding: 1rem;
-
-  .nav-btn {
-    background-color: white;
-    border-radius: 10px;
-    border: 0;
-    height: 80px;
-    cursor: pointer;
-
-    &:disabled {
-      cursor: default;
-    }
-  }
 }

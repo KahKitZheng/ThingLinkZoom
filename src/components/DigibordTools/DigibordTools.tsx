@@ -7,11 +7,14 @@ import Assignments from "../Assignments/Assignments";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
 
-const MAX_STEPS = 3;
+type DigibordToolsProps = {
+  step: number;
+};
 
-export default function DigibordTools() {
+export default function DigibordTools(props: DigibordToolsProps) {
+  const { step } = props;
+
   const [editor, setEditor] = useState<Editor | null>(null);
-  const [step, setStep] = useState(MAX_STEPS);
 
   const components = {
     ContextMenu: null, // right click menu
@@ -41,15 +44,27 @@ export default function DigibordTools() {
   // const today = new Date().toLocaleDateString("nl-NL");
 
   return (
-    <TLDrawEditorContext.Provider value={{ editor, step, setStep }}>
-      <Tldraw
-        persistenceKey={`step-${step}`}
-        components={components}
-        shapeUtils={customShapeUtils}
-        onMount={(editor) => {
-          setEditor(editor);
+    <TLDrawEditorContext.Provider value={{ editor, step }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "var(--tertiary-color)",
         }}
-      />
+      >
+        <Tldraw
+          persistenceKey={`step-${step}`}
+          components={components}
+          shapeUtils={customShapeUtils}
+          onMount={(editor) => {
+            setEditor(editor);
+          }}
+        />
+      </div>
       <ExternalToolbar />
     </TLDrawEditorContext.Provider>
   );
