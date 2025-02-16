@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { Editor, Tldraw } from "tldraw";
+import { useCallback, useState } from "react";
+import { Editor, Tldraw, TLUiEventHandler } from "tldraw";
 import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
-import CustomDigibordToolbar from "./components/CustomDigibordToolbar/CustomDigibordToolbar";
 import Assignments from "../Assignments/Assignments";
 import ModifiedDigibordToolbar from "./components/ModifiedDigibordToolbar/ModifiedDigibordToolbar";
 import "tldraw/tldraw.css";
@@ -39,6 +38,11 @@ export default function DigibordTools(props: DigibordToolsProps) {
     OnTheCanvas: Assignments,
   };
 
+  const handleUiEvent = useCallback<TLUiEventHandler>((name, data: unknown) => {
+    // insert real logger here
+    console.log(`event: ${name}`, data);
+  }, []);
+
   return (
     <TLDrawEditorContext.Provider value={{ editor, step }}>
       <div className="digibord-tools-container">
@@ -46,6 +50,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
           persistenceKey={`step-${step}`}
           components={components}
           onMount={(editor) => setEditor(editor)}
+          onUiEvent={handleUiEvent}
         />
       </div>
       {/* <CustomDigibordToolbar /> */}
