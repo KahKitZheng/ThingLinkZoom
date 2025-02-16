@@ -1,13 +1,17 @@
+.assignment {
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  min-height: 60vh;
+  max-width: 1200px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 .assignment-1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding: 2rem;
-  border-radius: 10px;
-  background-color: white;
-  max-width: 1000px;
-  margin: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   .assignment-title {
     font-size: 2.25rem;
@@ -36,12 +40,17 @@
         width: fit-content;
         padding: 1rem;
         margin: 0;
+        font-size: 28px;
       }
     }
   }
 }
 
 .assignment-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
   img {
     max-width: 100%;
     height: auto;
@@ -49,12 +58,5 @@
 }
 
 .assignment-4 {
-  max-width: 80ch;
-  background-color: white;
-  padding: 1rem;
-  border-radius: 6px;
-
-  p {
-    font-size: 16px;
-  }
+  max-width: 100ch;
 }

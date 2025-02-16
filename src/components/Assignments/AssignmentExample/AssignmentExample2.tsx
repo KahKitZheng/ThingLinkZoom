@@ -14,7 +14,7 @@ export default function AssignmentExample2() {
   >(undefined);
 
   return (
-    <div className="assignment-2">
+    <div className="assignment assignment-2">
       <ThingLinkZoom
         selectedItem={previewSelectedItem}
         setPreviewSelectedItem={setPreviewSelectedItem}
@@ -49,6 +49,15 @@ export default function AssignmentExample2() {
           ))}
         </div>
       </ThingLinkZoom>
+      <div>
+        <h1>Final Fantasy XIV</h1>
+        <p>
+          Have you heard of the critically acclaimed MMORPG Final Fantasy XIV?
+          With an expanded free trial which you can play through the entirety of
+          A Realm Reborn and the award-winning Stormblood expansion up to level
+          70 for free with no restrictions on playtime!
+        </p>
+      </div>
     </div>
   );
 }

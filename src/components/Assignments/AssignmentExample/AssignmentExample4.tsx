@@ -3,7 +3,7 @@ import "../../ThingLinkZoom/ThingLinkZoom.scss";
 
 export default function AssignmentExample2() {
   return (
-    <div className="assignment-4">
+    <div className="assignment assignment-4">
       <p>
         King Gizzard & The Lizard Wizard is an Australian psychedelic rock band
         known for their genre-bending sound, prolific output, and experimental

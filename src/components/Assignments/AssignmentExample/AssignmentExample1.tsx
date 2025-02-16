@@ -5,7 +5,7 @@ import "./AssignmentExample.scss";
 
 export default function AssignmentExample1() {
   return (
-    <div className="assignment-1">
+    <div className="assignment assignment-1">
       <ThingLinkZoom>
         <div className="grid-areas">
           {Array.from({ length: 7 }, (_, index) => (
