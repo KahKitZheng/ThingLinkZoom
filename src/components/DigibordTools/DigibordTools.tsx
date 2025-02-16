@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Editor, Tldraw } from "tldraw";
 import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
-import DigibordToolbar from "./components/DigibordToolbar/DigibordToolbar";
+import CustomDigibordToolbar from "./components/CustomDigibordToolbar/CustomDigibordToolbar";
 import Assignments from "../Assignments/Assignments";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";

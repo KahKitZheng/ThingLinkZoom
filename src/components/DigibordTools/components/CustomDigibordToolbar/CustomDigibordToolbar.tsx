@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useValue, GeoShapeGeoStyle } from "tldraw";
 import { TLDrawEditorContext } from "../../context/TLDrawEditorContext";
-import "./DigibordToolbar.scss";
+import "./CustomDigibordToolbar.scss";
 
-export default function DigibordToolbar() {
+export default function CustomDigibordToolbar() {
   const { editor } = useContext(TLDrawEditorContext);
 
   const currentToolId = useValue(
@@ -38,6 +38,13 @@ export default function DigibordToolbar() {
       </button>
       <button
         className="external-button"
+        data-isactive={isToolActive("highlight")}
+        onClick={() => handleOnClickTool("highlight")}
+      >
+        Highlight
+      </button>
+      <button
+        className="external-button"
         data-isactive={isToolActive("eraser")}
         onClick={() => handleOnClickTool("eraser")}
       >
@@ -45,18 +52,25 @@ export default function DigibordToolbar() {
       </button>
       <button
         className="external-button"
+        data-isactive={isToolActive("text")}
+        onClick={() => handleOnClickTool("text")}
+      >
+        Text
+      </button>
+      <button
+        className="external-button"
         data-isactive={
           isToolActive("geo") &&
-          editor?.getStyleForNextShape(GeoShapeGeoStyle) === "oval"
+          editor?.getStyleForNextShape(GeoShapeGeoStyle) === "rectangle"
         }
         onClick={() => {
           editor?.run(() => {
-            editor?.setStyleForNextShapes(GeoShapeGeoStyle, "oval");
+            editor?.setStyleForNextShapes(GeoShapeGeoStyle, "rectangle");
             handleOnClickTool("geo");
           });
         }}
       >
-        Oval
+        Rectangle
       </button>
     </div>
   );
