@@ -3,6 +3,7 @@ import { Editor, Tldraw } from "tldraw";
 import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
 import CustomDigibordToolbar from "./components/CustomDigibordToolbar/CustomDigibordToolbar";
 import Assignments from "../Assignments/Assignments";
+import ModifiedDigibordToolbar from "./components/ModifiedDigibordToolbar/ModifiedDigibordToolbar";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
 
@@ -25,7 +26,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
     // StylePanel: null, // top right menu with color pickers
     PageMenu: null, // top left, available pages
     // NavigationPanel: null, // zoomMenu + Minimap
-    Toolbar: null, // tools at bottom center
+    Toolbar: ModifiedDigibordToolbar, // tools at bottom center
     KeyboardShortcutsDialog: null,
     // QuickActions: null, // undo, redo, duplicate, delete
     // HelperButtons: null,
@@ -47,7 +48,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
           onMount={(editor) => setEditor(editor)}
         />
       </div>
-      <DigibordToolbar />
+      {/* <CustomDigibordToolbar /> */}
     </TLDrawEditorContext.Provider>
   );
 }
