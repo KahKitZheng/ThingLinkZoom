@@ -15,7 +15,7 @@
     "react-dom": "^18.3.1",
     "react-tippy": "^1.4.0",
     "react-zoom-pan-pinch": "^3.6.1",
-    "tldraw": "^3.7.2"
+    "tldraw": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

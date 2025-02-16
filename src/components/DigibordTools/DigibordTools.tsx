@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import { Editor, Tldraw, TLUiEventHandler } from "tldraw";
 import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
-import Assignments from "../Assignments/Assignments";
-import ModifiedDigibordToolbar from "./components/ModifiedDigibordToolbar/ModifiedDigibordToolbar";
+import { Editor, Tldraw, TLUiEventHandler } from "tldraw";
+import { components } from "./config/components";
+import { overrides } from "./config/overrides";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
 
@@ -14,29 +14,6 @@ export default function DigibordTools(props: DigibordToolsProps) {
   const { step } = props;
 
   const [editor, setEditor] = useState<Editor | null>(null);
-
-  const components = {
-    ContextMenu: null, // right click menu
-    ActionsMenu: null, // top left expandable menu to align items
-    // HelpMenu: null,
-    ZoomMenu: null, // bottom left zoom menu
-    MainMenu: null, // top left hamburger menu
-    Minimap: null, // expandable minimap in bottom left
-    // StylePanel: null, // top right menu with color pickers
-    PageMenu: null, // top left, available pages
-    // NavigationPanel: null, // zoomMenu + Minimap
-    Toolbar: ModifiedDigibordToolbar, // tools at bottom center
-    KeyboardShortcutsDialog: null,
-    // QuickActions: null, // undo, redo, duplicate, delete
-    // HelperButtons: null,
-    DebugPanel: null, // bottom right
-    DebugMenu: null, // bottom right
-    SharePanel: null,
-    // MenuPanel: null, // everything top left
-    // TopPanel: null,
-    // CursorChatBubble: null,
-    OnTheCanvas: Assignments,
-  };
 
   const handleUiEvent = useCallback<TLUiEventHandler>((name, data: unknown) => {
     // insert real logger here
@@ -51,6 +28,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
           components={components}
           onMount={(editor) => setEditor(editor)}
           onUiEvent={handleUiEvent}
+          overrides={overrides}
         />
       </div>
       {/* <CustomDigibordToolbar /> */}
