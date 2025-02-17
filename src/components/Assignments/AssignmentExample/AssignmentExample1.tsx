@@ -33,6 +33,9 @@ function Area(props: { index: number }) {
     <button
       key={props.index}
       onClick={() => zoomToElement(props.index.toString())}
+      onPointerDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
+      onTouchEnd={(e) => e.stopPropagation()}
       style={{
         backgroundColor: `hsl(calc(${props.index} * 45), 100%, 90%)`,
         color: `hsl(calc(${props.index} * 45), 100%, 30%)`,
