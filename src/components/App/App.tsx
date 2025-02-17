@@ -4,7 +4,7 @@ import "./App.scss";
 import "../DigibordTools/DigibordTools.scss"; // after tldraw.css
 import DigibordTools from "../DigibordTools/DigibordTools";
 
-const MAX_STEPS = 3;
+const MAX_STEPS = 5;
 
 export default function App() {
   const [step, setStep] = useState(3);
