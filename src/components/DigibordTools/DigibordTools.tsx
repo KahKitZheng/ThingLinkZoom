@@ -27,6 +27,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
           persistenceKey={`step-${step}`}
           components={components}
           onMount={(editor) => setEditor(editor)}
+          cameraOptions={{ zoomSteps: [1, 1.25, 1.5, 2, 3, 4] }}
           onUiEvent={handleUiEvent}
           overrides={overrides}
         />

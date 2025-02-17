@@ -20,7 +20,7 @@ export default function Assignments() {
       }
 
       editor.setCameraOptions({
-        zoomSteps: [1, 1.25, 1.5, 2],
+        ...editor.getCameraOptions(),
         constraints: {
           initialZoom: "default",
           baseZoom: "default",
