@@ -4,6 +4,7 @@ import AssignmentExample1 from "./AssignmentExample/AssignmentExample1";
 import AssignmentExample2 from "./AssignmentExample/AssignmentExample2";
 import AssignmentExample3 from "./AssignmentExample/AssignmentExample3";
 import AssignmentExample4 from "./AssignmentExample/AssignmentExample4";
+import AssignmentExample5 from "./AssignmentExample/AssignmentExample5";
 import "./Assignments.scss";
 
 export default function Assignments() {
@@ -51,6 +52,7 @@ export default function Assignments() {
       {step === 1 && <AssignmentExample2 />}
       {step === 2 && <AssignmentExample3 />}
       {step === 3 && <AssignmentExample4 />}
+      {step === 5 && <AssignmentExample5 />}
     </div>
   );
 }

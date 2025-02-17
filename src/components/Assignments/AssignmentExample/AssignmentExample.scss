@@ -57,5 +57,70 @@
 }
 
 .assignment-4 {
+  display: grid;
+  gap: 1rem;
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-top: 8px solid var(--primary-color);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+
+    &.Notice {
+      --primary-color: #ff6b00;
+      --tertiary-color: #ffd8cc;
+    }
+    &.Query {
+      --primary-color: #ffbc00;
+      --tertiary-color: #fff5cc;
+    }
+    &.Idea {
+      --primary-color: #b3eb5b;
+      --tertiary-color: #e5ffc6;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 16px;
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .card-label {
+        margin: 0;
+        padding: 2px 12px;
+        border: 1px solid currentColor;
+        border-radius: 9999px;
+        color: var(--primary-color);
+        background-color: var(--tertiary-color);
+        font-weight: 700;
+        font-size: 14px;
+      }
+    }
+
+    .card-description {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+}
+
+.assignment-5 {
   max-width: 100ch;
 }
