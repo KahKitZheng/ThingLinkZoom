@@ -1,41 +1,38 @@
-import { Tldraw, TLUiComponents } from "tldraw";
+import { useCallback, useState } from "react";
+import { TLDrawEditorContext } from "./context/TLDrawEditorContext";
+import { Editor, Tldraw, TLUiEventHandler } from "tldraw";
+import { components } from "./config/components";
+import { overrides } from "./config/overrides";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
 
-export default function DigibordTools() {
-  // The type here is include only to ensure this example contains all possible ui components,
-  const components: TLUiComponents = {
-    // ContextMenu: null, // right click menu
-    ActionsMenu: null, // top left expandable menu to align items
-    // HelpMenu: null,
-    // ZoomMenu: null, // bottom left zoom menu
-    MainMenu: null, // top left hamburger menu
-    Minimap: null, // expandable minimap in bottom left
-    // StylePanel: null, // top right menu with color pickers
-    PageMenu: null, // top left, available pages
-    // NavigationPanel: null, // zoomMenu + Minimap
-    // Toolbar: null, // tools at bottom center
-    KeyboardShortcutsDialog: null,
-    // QuickActions: null, // undo, redo, duplicate, delete
-    // HelperButtons: null,
-    DebugPanel: null, // bottom right
-    DebugMenu: null, // bottom right
-    SharePanel: null,
-    // MenuPanel: null, // everything top left
-    // TopPanel: null,
-    // CursorChatBubble: null,
-  };
+type DigibordToolsProps = {
+  step: number;
+};
 
-  // todays date in dd-mm-yyyy format
-  const today = new Date().toLocaleDateString("nl-NL");
+export default function DigibordTools(props: DigibordToolsProps) {
+  const { step } = props;
+
+  const [editor, setEditor] = useState<Editor | null>(null);
+
+  const handleUiEvent = useCallback<TLUiEventHandler>((name, data: unknown) => {
+    // insert real logger here
+    console.log(`event: ${name}`, data);
+  }, []);
 
   return (
-    <div style={{ position: "fixed", inset: 0 }}>
-      <Tldraw
-        components={components}
-        persistenceKey={today}
-        cameraOptions={{ isLocked: true }}
-      />
-    </div>
+    <TLDrawEditorContext.Provider value={{ editor, step }}>
+      <div className="digibord-tools-container">
+        <Tldraw
+          persistenceKey={`step-${step}`}
+          components={components}
+          onMount={(editor) => setEditor(editor)}
+          cameraOptions={{ zoomSteps: [1, 1.25, 1.5, 2, 3, 4] }}
+          onUiEvent={handleUiEvent}
+          overrides={overrides}
+        />
+      </div>
+      {/* <CustomDigibordToolbar /> */}
+    </TLDrawEditorContext.Provider>
   );
 }

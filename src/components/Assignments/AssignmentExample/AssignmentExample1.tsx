@@ -5,7 +5,7 @@ import "./AssignmentExample.scss";
 
 export default function AssignmentExample1() {
   return (
-    <div className="assignment-1">
+    <div className="assignment assignment-1">
       <ThingLinkZoom>
         <div className="grid-areas">
           {Array.from({ length: 7 }, (_, index) => (
@@ -33,6 +33,9 @@ function Area(props: { index: number }) {
     <button
       key={props.index}
       onClick={() => zoomToElement(props.index.toString())}
+      onPointerDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
+      onTouchEnd={(e) => e.stopPropagation()}
       style={{
         backgroundColor: `hsl(calc(${props.index} * 45), 100%, 90%)`,
         color: `hsl(calc(${props.index} * 45), 100%, 30%)`,

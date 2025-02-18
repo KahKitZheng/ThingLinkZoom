@@ -73,6 +73,9 @@ const TooltipButton: React.FC<TooltipButtonProps> = ({
         ref={buttonRef}
         onMouseEnter={() => adjustPosition()}
         onClick={handleOnClick}
+        onPointerDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+        onTouchEnd={(e) => e.stopPropagation()}
       >
         {text}
       </button>

@@ -13,8 +13,22 @@ export default function ThingLinkZoomPopup(
   const { isOpen, onClose, selectedItem } = props;
 
   return selectedItem && isOpen ? (
-    <div>
-      <button className="shade" onClick={onClose} />
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        width: "100vw",
+        height: "100vh",
+        zIndex: 8051,
+      }}
+    >
+      <button
+        className="shade"
+        onClick={onClose}
+        onPointerDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
+        onTouchEnd={(e) => e.stopPropagation()}
+      />
       <div className="popup">
         <ThingLinkZoomItemPreview item={selectedItem} isPopup />
       </div>

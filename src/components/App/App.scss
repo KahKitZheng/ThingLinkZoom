@@ -1,10 +1,12 @@
-#root {
+:root {
   --primary-color: #a0232a;
   --secondary-color: #db8b93;
   --tertiary-color: #f5c4c4;
   --prim-text: #ffffff;
   --sec-ter-text: #3b1318;
+}
 
+#root {
   margin: 0 auto;
   height: 100%;
   width: 100%;
@@ -15,6 +17,7 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+  background-color: var(--tertiary-color);
 }
 
 * {
@@ -25,21 +28,26 @@ img {
   display: block;
 }
 
-.layout {
-  background-color: var(--tertiary-color);
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 1rem;
+.nav-btn {
+  background-color: white;
+  border-radius: 10px;
+  border: 0;
+  height: 80px;
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 
-  .nav-btn {
-    background-color: white;
-    border-radius: 10px;
-    border: 0;
-    height: 80px;
-    cursor: pointer;
+  &:disabled {
+    cursor: default;
+  }
+
+  &.prev {
+    left: 1rem;
+  }
+
+  &.next {
+    right: 1rem;
   }
 }
