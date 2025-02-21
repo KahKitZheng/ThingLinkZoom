@@ -35,6 +35,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
           onMount={(editor) => {
             setEditor(editor);
             editor.setCurrentTool("idle");
+            editor.user.updateUserPreferences({ locale: "nl" });
           }}
           cameraOptions={{ zoomSteps: [1, 1.25, 1.5, 2, 3, 4] }}
           onUiEvent={handleUiEvent}
