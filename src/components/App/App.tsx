@@ -7,7 +7,7 @@ import DigibordTools from "../DigibordTools/DigibordTools";
 const MAX_STEPS = 5;
 
 export default function App() {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(2);
 
   function prevStep() {
     if (step <= 0) {
@@ -25,23 +25,13 @@ export default function App() {
 
   return (
     <>
-      <button
-        className="nav-btn prev"
-        onClick={prevStep}
-        onPointerDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-        onTouchEnd={(e) => e.stopPropagation()}
-        disabled={step === 0}
-      >
+      <button className="nav-btn prev" onClick={prevStep} disabled={step === 0}>
         prev
       </button>
       <DigibordTools step={step} />
       <button
         className="nav-btn next"
         onClick={nextStep}
-        onPointerDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-        onTouchEnd={(e) => e.stopPropagation()}
         disabled={step === MAX_STEPS}
       >
         next

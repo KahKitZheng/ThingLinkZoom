@@ -214,6 +214,15 @@ export const overrides: TLUiOverrides = {
 
       // Active tools
       // ----------------------------------------------------------------
+      idle: {
+        id: "idle",
+        label: "opdracht",
+        icon: "tool-screenshot",
+        kbd: "s",
+        onSelect() {
+          _editor.setCurrentTool("idle");
+        },
+      },
       eraser: {
         ...tools.eraser,
         // kbd: "e",

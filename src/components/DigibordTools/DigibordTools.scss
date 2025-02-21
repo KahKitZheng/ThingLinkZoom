@@ -4,6 +4,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.idle {
+    &:not(:has(.assignment-layout)) {
+      pointer-events: none;
+    }
+  }
 }
 
 .tl-container__focused {
