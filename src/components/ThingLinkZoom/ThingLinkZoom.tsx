@@ -86,9 +86,9 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
         <button
           className="full-screen-btn"
           onClick={(e) => handleOnClickFullScreen(e)}
-          onPointerDown={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()}
-          onTouchEnd={(e) => e.stopPropagation()}
+          // onPointerDown={(e) => e.stopPropagation()}
+          // onTouchStart={(e) => e.stopPropagation()}
+          // onTouchEnd={(e) => e.stopPropagation()}
         >
           👀
         </button>
