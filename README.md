@@ -11,14 +11,19 @@
 
 **TLDraw**
 
-- Layers are incorrect. TLDraw UI is on top of popup shaders.
-- Fix camera issues. Editor boundary should be the same as the IAT.
+- [ ] Layers are incorrect. TLDraw UI is on top of popup shaders.
+- [x] Fix camera issues. Editor boundary should be the same as the IAT.
   - Should the navigation arrows be always visible? Even zoomed in?
-- Figure out how the translation table works
-- Customize the toolbar
-- Create a custom tool
+- [x] Figure out how the translation table works
+- [x] Customize the toolbar
+- [x] Change default language to `nl`
+- [ ] Create a custom tool
+- [ ] Find a way to toggle the between interacting with the assignments and digibord tools
+- [ ] Toggle digbibord UI on/off
+- [ ] Keep selected tool when navigation between assignments
+- [ ] Find out why custom tools isn't part of `onUIEvent`
 
 ### Notes
 
 - You need to stop the event.propagation inside the custom shapes if you want it interactable. Otherwise it will also reach the editor shapes
-- Zoom to element doesn't work consistently when React strictmode was enabled.
+- ~Zoom to element doesn't work consistently when React strictmode was enabled.~
