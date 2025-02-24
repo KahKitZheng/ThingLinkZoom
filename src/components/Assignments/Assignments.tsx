@@ -9,7 +9,7 @@ import AssignmentExample6 from "./AssignmentExample/AssignmentExample6";
 import "./Assignments.scss";
 
 export default function Assignments() {
-  const { editor, step } = useContext(TLDrawEditorContext);
+  const { editor, step, isIdle } = useContext(TLDrawEditorContext);
 
   // refs doesn't re-render the component, so we use getElementById instead
   const assignmentContainerEl = document.getElementById("assignment-container");
@@ -48,7 +48,14 @@ export default function Assignments() {
   }, [assignmentContainerEl, editor]);
 
   return (
-    <div id="assignment-container" className="assignment-layout">
+    <div
+      // key={isIdle ? "idle" : "not-idle"}
+      id="assignment-container"
+      className="assignment-layout"
+      onPointerDown={(e) => isIdle && e.stopPropagation()}
+      onTouchStart={(e) => isIdle && e.stopPropagation()}
+      onTouchEnd={(e) => isIdle && e.stopPropagation()}
+    >
       {step === 0 && <AssignmentExample1 />}
       {step === 1 && <AssignmentExample2 />}
       {step === 2 && <AssignmentExample3 />}

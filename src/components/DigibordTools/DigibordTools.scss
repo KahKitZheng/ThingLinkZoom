@@ -6,8 +6,9 @@
   justify-content: center;
 
   &.idle {
-    &:not(:has(.assignment-layout)) {
-      pointer-events: none;
+    // text should be selectable when digibord is idle
+    .assignment-layout * {
+      user-select: text;
     }
   }
 }

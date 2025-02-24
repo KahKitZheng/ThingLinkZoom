@@ -8,6 +8,7 @@ const MAX_STEPS = 5;
 
 export default function App() {
   const [step, setStep] = useState(2);
+  const [currentTool, setCurrentTool] = useState<string>("idle");
 
   const prevStep = useCallback(() => {
     if (step <= 0) {
@@ -48,7 +49,11 @@ export default function App() {
       <button className="nav-btn prev" onClick={prevStep} disabled={step === 0}>
         prev
       </button>
-      <DigibordTools step={step} />
+      <DigibordTools
+        step={step}
+        currentTool={currentTool}
+        setCurrentTool={setCurrentTool}
+      />
       <button
         className="nav-btn next"
         onClick={nextStep}
