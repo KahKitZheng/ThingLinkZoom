@@ -61,7 +61,7 @@ export default function useTLDrawOverrides(
           ...tools.rectangle,
           onSelect() {
             setCurrentTool("rectangle");
-            _editor.setCurrentTool("rectangle");
+            _editor.setCurrentTool("geo");
           },
           // kbd: "r",
         },
