@@ -3,8 +3,6 @@ import {
   TLUiActionsContextType,
   TLUiToolsContextType,
 } from "tldraw";
-import { TLDrawEditorContext } from "../context/TLDrawEditorContext";
-import { useContext } from "react";
 
 // Last check v3.8.1
 
@@ -25,7 +23,7 @@ export default function useTLDrawOverrides(
         // ----------------------------------------------------------------
         idle: {
           id: "idle",
-          // label: "tool.assignment",
+          label: "idle",
           icon: "tool-screenshot",
           kbd: "s",
           onSelect() {
