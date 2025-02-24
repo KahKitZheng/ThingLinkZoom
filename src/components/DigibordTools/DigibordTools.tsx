@@ -6,6 +6,7 @@ import useTLDrawOverrides from "./config/overrides";
 import "tldraw/tldraw.css";
 import "./DigibordTools.scss";
 import { IdleTool } from "./tools/TLDrawIdleTool";
+import { customAssetUrls } from "./assets/customAssets";
 
 type DigibordToolsProps = {
   step: number;
@@ -55,6 +56,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
           cameraOptions={{ zoomSteps: [1, 1.25, 1.5, 2, 3, 4] }}
           onUiEvent={handleUiEvent}
           overrides={overrides}
+          assetUrls={customAssetUrls}
         />
       </div>
 

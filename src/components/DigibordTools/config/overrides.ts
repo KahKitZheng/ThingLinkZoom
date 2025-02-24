@@ -24,7 +24,7 @@ export default function useTLDrawOverrides(
         idle: {
           id: "idle",
           label: "idle",
-          icon: "tool-screenshot",
+          icon: "tool-idle",
           kbd: "s",
           onSelect() {
             setCurrentTool("idle");
