@@ -43,7 +43,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
     >
       <div className={`digibord-tools-container ${isIdle ? "idle" : ""}`}>
         <Tldraw
-          // hideUi
+          hideUi
           persistenceKey={`toggle-mode-step-${props.step}`}
           components={components}
           tools={customTools}
