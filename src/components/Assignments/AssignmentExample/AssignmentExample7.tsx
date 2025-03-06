@@ -126,8 +126,8 @@ export default function AssignmentExample7() {
     if (!canvas) return;
 
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = (e.clientX - rect.left) / (window.devicePixelRatio || 1);
+    const y = (e.clientY - rect.top) / (window.devicePixelRatio || 1);
 
     setIsDrawing(true);
     setCurrentRect({ x, y, width: 0, height: 0, zIndex: rectangles.length });
@@ -140,8 +140,8 @@ export default function AssignmentExample7() {
     if (!canvas) return;
 
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x = (e.clientX - rect.left) / (window.devicePixelRatio || 1);
+    const y = (e.clientY - rect.top) / (window.devicePixelRatio || 1);
 
     setCurrentRect({
       ...currentRect,
