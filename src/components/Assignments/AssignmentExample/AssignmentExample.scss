@@ -156,6 +156,12 @@
       cursor: pointer;
       border-radius: 4px;
 
+      &:hover,
+      &.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
       &:not(:first-child) {
         margin-left: 1rem;
       }

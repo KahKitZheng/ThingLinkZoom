@@ -18,7 +18,9 @@ export default function AssignmentExample7() {
   const [baseImage, setBaseImage] = useState<string | null>(null);
   const [overlayImage, setOverlayImage] = useState<string | null>(null);
   const [canvasSize, setCanvasSize] = useState({ width: 800, height: 600 });
+
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
+  const [isDrawingAllowed, setIsDrawingAllowed] = useState(false);
 
   const [rectangles, setRectangles] = useState<Rectangle[]>([]);
   const [currentRect, setCurrentRect] = useState<Rectangle | null>(null);
@@ -120,7 +122,7 @@ export default function AssignmentExample7() {
 
   // Drawing functionality
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!baseImage || !overlayImage) return;
+    if (!isDrawingAllowed || !baseImage || !overlayImage) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -212,12 +214,9 @@ export default function AssignmentExample7() {
 
       ctx.save();
 
-      // Add transparency to the border color
-      // Use full opacity (0.9) for the active rectangle
-      const alpha = 0.9;
-      const colorWithAlpha = hexToRgba("#ff0000", alpha);
+      const style = window.getComputedStyle(document.body);
 
-      ctx.strokeStyle = colorWithAlpha;
+      ctx.strokeStyle = style.getPropertyValue("--primary-color");
       ctx.lineWidth = 2;
       ctx.setLineDash([5, 3]);
       ctx.strokeRect(
@@ -230,20 +229,6 @@ export default function AssignmentExample7() {
     },
     []
   );
-
-  // Add a helper function to convert hex color to rgba
-  const hexToRgba = (hex: string, alpha: number): string => {
-    // Remove the hash if it exists
-    hex = hex.replace("#", "");
-
-    // Parse the hex values
-    const r = Number.parseInt(hex.substring(0, 2), 16);
-    const g = Number.parseInt(hex.substring(2, 4), 16);
-    const b = Number.parseInt(hex.substring(4, 6), 16);
-
-    // Return rgba color string
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  };
 
   // Optimized canvas rendering to eliminate flickering
   const renderCanvas = useCallback(() => {
@@ -388,11 +373,29 @@ export default function AssignmentExample7() {
               onMouseMove={draw}
               onMouseUp={stopDrawing}
               onMouseLeave={stopDrawing}
+              style={{
+                cursor: isDrawingAllowed ? "crosshair" : "default",
+              }}
             />
           </div>
           <div>
-            <button onClick={() => setIsOverlayVisible(false)}>
+            <button
+              className={!isOverlayVisible ? "active" : ""}
+              onClick={() => {
+                setIsOverlayVisible(false);
+                setIsDrawingAllowed(false);
+              }}
+            >
               Reveal all
+            </button>
+            <button
+              className={isDrawingAllowed ? "active" : ""}
+              onClick={() => {
+                setIsDrawingAllowed(!isDrawingAllowed);
+              }}
+              disabled={!isOverlayVisible}
+            >
+              Reveal area
             </button>
             <button
               onClick={() => {
