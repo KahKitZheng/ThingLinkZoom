@@ -20,6 +20,11 @@ body {
   background-color: var(--tertiary-color);
 }
 
+// changes the bg color of the fullscreen mode
+:not(:root):fullscreen::backdrop {
+  background: var(--tertiary-color);
+}
+
 * {
   box-sizing: border-box;
 }

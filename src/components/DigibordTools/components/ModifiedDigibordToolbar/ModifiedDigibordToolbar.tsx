@@ -8,6 +8,7 @@ import {
 export default function ModifiedDigibordToolbar() {
   const MAX_VISIBLE_TOOLS = 9;
   const visibleTools = [
+    "idle", // custom
     "select",
     "draw",
     "highlight",

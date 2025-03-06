@@ -19,15 +19,14 @@ export default function ThingLinkZoomPopup(
         inset: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: 8051,
       }}
     >
       <button
         className="shade"
         onClick={onClose}
-        onPointerDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-        onTouchEnd={(e) => e.stopPropagation()}
+        // onPointerDown={(e) => e.stopPropagation()}
+        // onTouchStart={(e) => e.stopPropagation()}
+        // onTouchEnd={(e) => e.stopPropagation()}
       />
       <div className="popup">
         <ThingLinkZoomItemPreview item={selectedItem} isPopup />

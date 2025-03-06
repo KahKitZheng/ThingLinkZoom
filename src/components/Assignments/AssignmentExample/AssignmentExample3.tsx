@@ -77,9 +77,9 @@ function ZoomArea({ item }: { item: ZoomElement }) {
 
         zoomToElement(item.id);
       }}
-      onPointerDown={(e) => e.stopPropagation()}
-      onTouchStart={(e) => e.stopPropagation()}
-      onTouchEnd={(e) => e.stopPropagation()}
+      // onPointerDown={(e) => e.stopPropagation()}
+      // onTouchStart={(e) => e.stopPropagation()}
+      // onTouchEnd={(e) => e.stopPropagation()}
       className="zoom-area"
     >
       <div id={item.id} style={{ height: "100%", width: "100%" }}></div>

@@ -129,3 +129,42 @@
 .assignment-6 {
   max-width: 100ch;
 }
+
+.assignment-7 {
+  min-width: 700px;
+  min-height: 700px;
+
+  .pdf-assignment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 2rem;
+
+    background-color: white;
+    border-radius: 6px;
+
+    p {
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: var(--tertiary-color);
+      border: 2px solid var(--primary-color);
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover,
+      &.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
