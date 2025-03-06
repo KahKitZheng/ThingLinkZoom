@@ -19,6 +19,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
 
   const [editor, setEditor] = useState<Editor | null>(null);
   const [isIdle, setIsIdle] = useState(false);
+  const [isDigibordUIVisible, setIsDigibordUIVisible] = useState(true);
 
   const handleUiEvent = useCallback<TLUiEventHandler>(
     (name, data: unknown) => {
@@ -37,13 +38,27 @@ export default function DigibordTools(props: DigibordToolsProps) {
     setIsIdle(currentTool === "idle");
   }, [currentTool, editor]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey && e.key === "k") || (e.ctrlKey && e.key === "k")) {
+        setIsDigibordUIVisible(!isDigibordUIVisible);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isDigibordUIVisible]);
+
   return (
     <TLDrawEditorContext.Provider
       value={{ editor, step, isIdle, setCurrentTool }}
     >
       <div className={`digibord-tools-container ${isIdle ? "idle" : ""}`}>
         <Tldraw
-          hideUi
+          hideUi={isDigibordUIVisible}
           persistenceKey={`toggle-mode-step-${props.step}`}
           components={components}
           tools={customTools}
