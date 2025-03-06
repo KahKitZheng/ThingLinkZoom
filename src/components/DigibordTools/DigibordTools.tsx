@@ -22,7 +22,7 @@ export default function DigibordTools(props: DigibordToolsProps) {
   const [isDigibordUIVisible, setIsDigibordUIVisible] = useState(true);
 
   const handleUiEvent = useCallback<TLUiEventHandler>(
-    (name, data: unknown) => {
+    (name, data: Record<string, unknown>) => {
       // insert real logger here
       console.log(`event: ${name}`, data);
 
