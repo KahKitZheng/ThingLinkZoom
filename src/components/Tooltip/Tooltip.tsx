@@ -65,8 +65,6 @@ const TooltipButton: React.FC<TooltipButtonProps> = ({
     if (onClick) {
       onClick();
     }
-
-    console.log("clicky");
   }
 
   return (

@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "tldraw/tldraw.css";
 import "./App.scss";
 import "../DigibordTools/DigibordTools.scss"; // after tldraw.css
 import DigibordTools from "../DigibordTools/DigibordTools";
+import { FullScreenContextProvider } from "../../context/FullscreenContextProvider";
 
-const MAX_STEPS = 6;
+const MAX_STEPS = 7;
 
 export default function App() {
-  const [step, setStep] = useState(6);
+  const [step, setStep] = useState(7);
   const [currentTool, setCurrentTool] = useState<string>("idle");
 
   const prevStep = useCallback(() => {
@@ -44,23 +45,31 @@ export default function App() {
     };
   }, [currentTool, nextStep, prevStep]);
 
+  const assignmentContainerRef = useRef<HTMLDivElement | null>(null);
+
   return (
-    <>
-      <button className="nav-btn prev" onClick={prevStep} disabled={step === 0}>
-        prev
-      </button>
-      <DigibordTools
-        step={step}
-        currentTool={currentTool}
-        setCurrentTool={setCurrentTool}
-      />
-      <button
-        className="nav-btn next"
-        onClick={nextStep}
-        disabled={step === MAX_STEPS}
-      >
-        next
-      </button>
-    </>
+    <FullScreenContextProvider refEl={assignmentContainerRef}>
+      <div ref={assignmentContainerRef}>
+        <button
+          className="nav-btn prev"
+          onClick={prevStep}
+          disabled={step === 0}
+        >
+          prev
+        </button>
+        <DigibordTools
+          step={step}
+          currentTool={currentTool}
+          setCurrentTool={setCurrentTool}
+        />
+        <button
+          className="nav-btn next"
+          onClick={nextStep}
+          disabled={step === MAX_STEPS}
+        >
+          next
+        </button>
+      </div>
+    </FullScreenContextProvider>
   );
 }

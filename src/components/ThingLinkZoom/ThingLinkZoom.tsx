@@ -1,14 +1,14 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import {
   TransformWrapper,
   TransformComponent,
   ReactZoomPanPinchRef,
 } from "react-zoom-pan-pinch";
 import React from "react";
-import useFullScreen from "../../hooks/useFullScreen";
 import { ThingLinkZoomContext } from "./context/ThingLinkZoomContext";
 import "./ThingLinkZoom.scss";
 import ThingLinkZoomPopup from "../ThingLinkZoomPopup/ThingLinkZoomPopup";
+import { FullScreenContext } from "../../context/FullScreenContext";
 
 type ThingLinkZoomProps = {
   children: React.ReactNode;
@@ -20,13 +20,14 @@ type ThingLinkZoomProps = {
 
 export default function ThingLinkZoom(props: ThingLinkZoomProps) {
   const { children } = props;
+  const { toggleFullScreen } = useContext(FullScreenContext);
 
   const [selectId, setSelectId] = useState<string>("");
 
   const fullScreenContainerRef = useRef<HTMLDivElement>(null);
   const transformComponentRef = useRef<ReactZoomPanPinchRef | null>(null);
 
-  const { toggleFullScreen } = useFullScreen(fullScreenContainerRef);
+  // const { toggleFullScreen } = useFullScreen(fullScreenContainerRef);
 
   function resetZoom() {
     if (!transformComponentRef.current) {
@@ -86,9 +87,9 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
         <button
           className="full-screen-btn"
           onClick={(e) => handleOnClickFullScreen(e)}
-          // onPointerDown={(e) => e.stopPropagation()}
-          // onTouchStart={(e) => e.stopPropagation()}
-          // onTouchEnd={(e) => e.stopPropagation()}
+          onPointerDown={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
         >
           👀
         </button>
