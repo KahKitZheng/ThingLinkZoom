@@ -6,9 +6,11 @@ import ThingLinkZoom from "../../ThingLinkZoom/ThingLinkZoom";
 import ThingLinkZoomItemPreview from "../../ThingLinkZoomPreview/ThingLinkZoomPreview";
 import "./AssignmentExample.scss";
 import "../../ThingLinkZoom/ThingLinkZoom.scss";
+import { TLDrawEditorContext } from "../../DigibordTools/context/TLDrawEditorContext";
 
 export default function AssignmentExample2() {
   const imageRef = useRef<HTMLImageElement>(null);
+  const { setActivePopupId } = useContext(TLDrawEditorContext);
 
   const [previewSelectedItem, setPreviewSelectedItem] = useState<
     ThingLinkItem | undefined
@@ -42,6 +44,7 @@ export default function AssignmentExample2() {
                 containerRef={imageRef}
                 onClick={() => {
                   setPreviewSelectedItem(item);
+                  setActivePopupId(item.id);
                 }}
               />
             </div>
