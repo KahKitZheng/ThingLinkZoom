@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { FullScreenContextProvider } from "../../context/FullScreenContextProvider";
 import "tldraw/tldraw.css";
 import "./App.scss";
 import "../DigibordTools/DigibordTools.scss"; // after tldraw.css
 import DigibordTools from "../DigibordTools/DigibordTools";
-import { FullScreenContextProvider } from "../../context/FullscreenContextProvider";
 
 const MAX_STEPS = 7;
 
 export default function App() {
-  const [step, setStep] = useState(7);
+  const [step, setStep] = useState(2);
   const [currentTool, setCurrentTool] = useState<string>("idle");
 
   const prevStep = useCallback(() => {

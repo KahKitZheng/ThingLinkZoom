@@ -9,6 +9,7 @@ import { ThingLinkZoomContext } from "./context/ThingLinkZoomContext";
 import "./ThingLinkZoom.scss";
 import ThingLinkZoomPopup from "../ThingLinkZoomPopup/ThingLinkZoomPopup";
 import { FullScreenContext } from "../../context/FullScreenContext";
+import { TLDrawEditorContext } from "../DigibordTools/context/TLDrawEditorContext";
 
 type ThingLinkZoomProps = {
   children: React.ReactNode;
@@ -21,7 +22,7 @@ type ThingLinkZoomProps = {
 export default function ThingLinkZoom(props: ThingLinkZoomProps) {
   const { children } = props;
   const { toggleFullScreen } = useContext(FullScreenContext);
-
+  const { setActivePopupId } = useContext(TLDrawEditorContext);
   const [selectId, setSelectId] = useState<string>("");
 
   const fullScreenContainerRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,7 @@ export default function ThingLinkZoom(props: ThingLinkZoomProps) {
         onClose={() => {
           if (props.setPreviewSelectedItem) {
             props.setPreviewSelectedItem(undefined);
+            setActivePopupId("");
           }
         }}
         selectedItem={props.selectedItem}

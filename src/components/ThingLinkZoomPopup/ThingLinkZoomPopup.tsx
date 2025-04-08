@@ -19,6 +19,7 @@ export default function ThingLinkZoomPopup(
         inset: 0,
         width: "100vw",
         height: "100vh",
+        zIndex: 5, // important for layering shapes?
       }}
     >
       <button

@@ -1,12 +1,15 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import TooltipButton from "../../Tooltip/Tooltip";
 import ThingLinkZoom from "../../ThingLinkZoom/ThingLinkZoom";
 import FINAL_FANTASY_JOBS from "../../../assets/ffxiv_jobs.png";
 import ThingLinkZoomItemPreview from "../../ThingLinkZoomPreview/ThingLinkZoomPreview";
 import "./AssignmentExample.scss";
 import "../../ThingLinkZoom/ThingLinkZoom.scss";
+import { TLDrawEditorContext } from "../../DigibordTools/context/TLDrawEditorContext";
 
 export default function AssignmentExample2() {
+  const { setActivePopupId } = useContext(TLDrawEditorContext);
+
   const imageRef = useRef<HTMLImageElement>(null);
 
   const [previewSelectedItem, setPreviewSelectedItem] = useState<
@@ -43,7 +46,10 @@ export default function AssignmentExample2() {
                 text={index.toString()}
                 tooltip={<ThingLinkZoomItemPreview item={item} />}
                 containerRef={imageRef}
-                onClick={() => setPreviewSelectedItem(item)}
+                onClick={() => {
+                  setPreviewSelectedItem(item);
+                  setActivePopupId(item.id);
+                }}
               />
             </div>
           ))}
